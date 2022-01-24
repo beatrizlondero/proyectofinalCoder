@@ -13,10 +13,10 @@ def inicio (request):
     # return HttpResponse("Incio")
 
 def proveedores(request):
-    return render(request, 'inicio.html', {'Proveedor' :Proveedor.objects.all()})
+    return render(request, 'inicio.html')
 
-def proveedoresList(request):
-    return render(request, 'listado.html', {'proveedor' :Proveedor.objects.all()})
+# def proveedoresList(request):
+#     return render(request, 'listado.html', {'proveedor' :Proveedor.objects.all()})
 
 def proveedoresAdd(request):
     if request.method=='POST':
@@ -37,6 +37,6 @@ def proveedoresDel(request,proveedorNombre):
 class proveedorListView(ListView):
     model = Proveedor
     template_name='listado.html'  
-    # context_objet_name= 'Proveedores'
+    # context_objet_name= 'proveedores'
     
     
