@@ -1,0 +1,25 @@
+{% extends 'padre.html' %}
+{% block proveedorCambia %}
+    <a class="btn btn-primary" href="{% url 'proveedoresAdd' %}" >Agregar</a>
+    {% comment %} <a class="btn btn-primary" href="{% url 'proveedoresDel proveedor.nombre' %}" >Borrar</a> {% endcomment %}
+    <a class="btn btn-primary" href="{% url 'proveedoresList' %}" >Listar</a>
+    <a class="btn btn-primary" href="{% url 'proveedoresList' %}" >Modificar</a>
+    {% comment %} <input type="submit"  value="Agregar">
+    <input type="submit"  value="Borrar">
+    <input type="submit"  value="Modificar">
+    <input type="submit"  value="Listar"> {% endcomment %}
+{% endblock %}
+
+{% block clienteCambia %}
+    <input type="submit"  value="Agregar">
+    <input type="submit"  value="Borrar">
+    <input type="submit"  value="Modificar">
+    <input type="submit"  value="Listar">
+{% endblock %}
+
+{% block productoCambia %}
+    <input type="submit"  value="Agregar">
+    <input type="submit"  value="Borrar">
+    <input type="submit"  value="Modificar">
+    <input type="submit"  value="Listar">
+{% endblock %}

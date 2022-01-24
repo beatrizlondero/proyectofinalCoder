@@ -1,0 +1,24 @@
+{% extends 'padre.html' %}
+{% block proveedorCambia %}
+    <h3> Los Proveedores son : </h3>
+    {% for provedor in object_list %}
+        {{proveedor}}
+        <br>
+    {% endfor %}    
+    <a class="btn btn-primary" href="{% url 'proveedores' %}" >Volver</a>
+
+{% endblock %}
+
+{% comment %} {% block clienteCambia %}
+    <input type="submit"  value="Agregar">
+    <input type="submit"  value="Borrar">
+    <input type="submit"  value="Modificar">
+    <input type="submit"  value="Listar">
+{% endblock %}
+
+{% block productoCambia %}
+    <input type="submit"  value="Agregar">
+    <input type="submit"  value="Borrar">
+    <input type="submit"  value="Modificar">
+    <input type="submit"  value="Listar">
+{% endblock %} {% endcomment %}
