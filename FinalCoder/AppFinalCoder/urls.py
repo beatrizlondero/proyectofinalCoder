@@ -1,6 +1,6 @@
 from xml.etree.ElementInclude import include
 from django.urls import path
-from AppFinalCoder.views import inicio, proveedoresAdd, proveedores
+from AppFinalCoder.views import inicio, proveedores
 from django.urls import path
 from AppFinalCoder.views import proveedorListView, proveedorCreateView , proveedorUpdateView, proveedoresModif
 from AppFinalCoder.views import proveedorDeleteView, proveedoresBorrar

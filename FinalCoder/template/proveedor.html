@@ -1,11 +1,11 @@
 {% extends 'padre.html' %}
 {% block proveedorCambia %}
     {% if formulario.errors %}
-    <p style= "color:red; ">{{formulario.errors}}</p>
+    <p style= "color:red; ">{{formularioulario.errors}}</p>
 
     {% endif %}
 
-    <form action="" method='POST'> 
+    <formulario action="" method='POST'> 
     {% csrf_token %}
     <table>
         
@@ -18,4 +18,5 @@
     <br>
     <br>
     <a class="btn btn-primary" href="{% url 'proveedores' %} ">Volver</a>
+    {% comment %} <input class="btn btn-primary" type="submit" value="Volver" href="{% url 'proveedores'%}"> {% endcomment %}
 {% endblock %}

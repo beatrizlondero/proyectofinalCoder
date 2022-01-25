@@ -21,16 +21,16 @@ def proveedores(request):
 # def proveedoresList(request):
 #     return render(request, 'listado.html', {'proveedor' :Proveedor.objects.all()})
 
-def proveedoresAdd(request):
-    if request.method=='POST':
-        formulario = proveedorForm (request.POST)
-        if formulario.is_valid():
-            data = formulario.cleaned_data
-            Proveedor.objects.create(nombre=data['nombre'], domicilio=data['domicilio'],email=data['email'])
-            return redirect('proveedoresList')
-    else:
-        formulario = proveedorForm()
-    return render(request, 'proveedor.html',{'formulario': formulario})      
+# def proveedoresAdd(request):
+#     if request.method=='POST':
+#         formulario = proveedorForm (request.POST)
+#         if formulario.is_valid():
+#             data = formulario.cleaned_data
+#             Proveedor.objects.create(nombre=data['nombre'], domicilio=data['domicilio'],email=data['email'])
+#             return redirect('proveedoresList')
+#     else:
+#         formulario = proveedorForm()
+#     return render(request, 'proveedor.html',{'formulario': formulario})      
 
 # def proveedoresDel(request,proveedorNombre):
 #       proveedor = Proveedor.objects.get(nombre=proveedorNombre)
@@ -54,7 +54,7 @@ class proveedorDeleteView(DeleteView):
     # template_name = 'proveedor_form.html'    
     model = Proveedor
     success_url = reverse_lazy('proveedoresList')
-    template_name= 'proveedor_form.html' 
+    template_name= 'proveedor_form_borrar.html' 
     
 class proveedoresBorrar(ListView):
     model = Proveedor
