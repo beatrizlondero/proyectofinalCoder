@@ -1,0 +1,13 @@
+{% extends 'padre.html' %}
+{% block proveedorCambia %}
+    <h3> Los Proveedores son : </h3>
+    {% for proveedor in object_list %}
+        {{proveedor}}
+        <a href= "{% url 'proveedoresDel' proveedor.id %}"> Borrar </a>
+        <br>
+    {% endfor %}    
+    <br>
+    <a class="btn btn-primary" href="{% url 'proveedores' %} ">Volver</a>
+    <a href="#proveedor"></a>
+
+{% endblock %}
