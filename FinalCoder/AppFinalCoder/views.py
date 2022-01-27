@@ -6,11 +6,13 @@ from django.urls import reverse_lazy
 from django.views.generic import ListView
 from django.views.generic.edit import DeleteView, CreateView, UpdateView
 from django.views.generic.detail import DetailView
-
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
 from AppFinalCoder.models import Proveedor
 from AppFinalCoder.forms import *
 # from .models import Curso, Profesor
 # from AppCoder.forms import CursoForm , ProfesorForm
+@login_required
 def inicio (request):
     return render(request,'inicio.html')
     # return HttpResponse("Incio")
@@ -42,7 +44,7 @@ class proveedorListView(ListView):
     template_name='listado.html'  
     # context_objet_name= 'proveedores'
 
-class proveedoresModif(ListView):
+class proveedoresModif(LoginRequiredMixin,ListView):
     model = Proveedor
     template_name='proveedor_edit.html'  
     
@@ -56,11 +58,11 @@ class proveedorDeleteView(DeleteView):
     success_url = reverse_lazy('proveedoresList')
     template_name= 'proveedor_form_borrar.html' 
     
-class proveedoresBorrar(ListView):
+class proveedoresBorrar(LoginRequiredMixin, ListView):
     model = Proveedor
     template_name='proveedor_borrar.html' 
     
-class proveedorCreateView(CreateView): 
+class proveedorCreateView(LoginRequiredMixin, CreateView): 
     model = Proveedor
     success_url = reverse_lazy('proveedoresList')
     fields=['nombre','domicilio','email' ]
