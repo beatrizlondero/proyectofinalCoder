@@ -4,17 +4,13 @@
     <a class="btn btn-primary" href="{% url 'proveedoresBorrar'%}" >Borrar</a>
     <a class="btn btn-primary" href="{% url 'proveedoresList' %}" >Listar</a>
     <a class="btn btn-primary" href="{% url 'proveedoresModif' %}" >Modificar</a>
-    {% comment %} <input class="btn btn-primary" type="submit" value="Agregar" href="{% url 'proveedoresAdd'%}">
-    <input class="btn btn-primary" type="submit" value="Borrar" href="{% url 'proveedoresBorrar'%}">
-    <input class="btn btn-primary" type="submit" value="Listar" href="{% url 'proveedoresList'%}">
-    <input class="btn btn-primary" type="submit" value="Modificar" href="{% url 'proveedoresModif'%}"> {% endcomment %}
 {% endblock %}
 
 {% block clienteCambia %}
-    <input type="submit"  value="Agregar">
-    <input type="submit"  value="Borrar">
-    <input type="submit"  value="Modificar">
-    <input type="submit"  value="Listar">
+    <a class="btn btn-primary" href="{% url 'clientesAdd' %}" >Agregar</a>
+    <a class="btn btn-primary" href="{% url 'clientesBorrar'%}" >Borrar</a>
+    <a class="btn btn-primary" href="{% url 'clientesList' %}" >Listar</a>
+    <a class="btn btn-primary" href="{% url 'clientesModif' %}" >Modificar</a>
 {% endblock %}
 
 {% block productoCambia %}

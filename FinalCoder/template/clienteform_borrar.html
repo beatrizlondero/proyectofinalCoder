@@ -1,0 +1,27 @@
+{% extends 'padre.html' %}
+{% block clienteCambia %}
+    {% if form.errors %}
+        <p style= "color:red; ">{{form.errors}}</p>
+    {% endif %}
+    <form action="" method='POST'> 
+    {% csrf_token %}
+        ¿Desea borrar la siguiente informacion?: 
+    <br>
+    <br>
+        {{ object }}    
+    <br>
+    <br>
+    <br>
+        <input class="btn btn-primary" type="submit" value="Confirmar Borrado">
+    <br>
+    <br>
+    <br>
+    <input class="btn btn-primary" type="submit" value="Volver" href="{% url 'clientes'%}">
+    
+{% endblock %}
+{% block proveedorCambia %}
+    <a class="btn btn-primary" href="{% url 'proveedoresAdd' %}" >Agregar</a>
+    <a class="btn btn-primary" href="{% url 'proveedoresBorrar'%}" >Borrar</a>
+    <a class="btn btn-primary" href="{% url 'proveedoresList' %}" >Listar</a>
+    <a class="btn btn-primary" href="{% url 'proveedoresModif' %}" >Modificar</a>
+{% endblock %}

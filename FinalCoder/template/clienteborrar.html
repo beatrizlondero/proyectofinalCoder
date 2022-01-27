@@ -1,0 +1,17 @@
+{% extends 'padre.html' %}
+{% block clienteCambia %}
+    <h3> Los clientes son : </h3>
+    {% for cliente in object_list %}
+        {{cliente}}
+        <a href= "{% url 'clientesDel' cliente.id %}"> Borrar </a>
+        <br>
+    {% endfor %}    
+    <br>
+    <a class="btn btn-primary" href="{% url 'clientes' %} ">Volver</a>
+{% endblock %}
+{% block proveedorCambia %}
+    <a class="btn btn-primary" href="{% url 'proveedoresAdd' %}" >Agregar</a>
+    <a class="btn btn-primary" href="{% url 'proveedoresBorrar'%}" >Borrar</a>
+    <a class="btn btn-primary" href="{% url 'proveedoresList' %}" >Listar</a>
+    <a class="btn btn-primary" href="{% url 'proveedoresModif' %}" >Modificar</a>
+{% endblock %}

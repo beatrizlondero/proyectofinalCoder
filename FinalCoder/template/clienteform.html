@@ -1,0 +1,28 @@
+{% extends 'padre.html' %}
+{% block clienteCambia %}
+    {% if form.errors %}
+    <p style= "color:red; ">{{form.errors}}</p>
+
+    {% endif %}
+
+    <form action="" method='POST'> 
+    {% csrf_token %}
+    <table>
+        
+        {{ form.as_table }}
+
+    </table>
+    <br>
+    <input type="submit" value="Enviar">
+    <br>
+    <br>
+    <br>
+    {% comment %} <input class="btn btn-primary" type="submit" value="Volver" href="{% url 'clientees'%}"> {% endcomment %}
+    <a class="btn btn-primary" href="{% url 'clientes' %} ">Volver</a>
+{% endblock %}
+{% block proveedorCambia %}
+    <a class="btn btn-primary" href="{% url 'proveedoresAdd' %}" >Agregar</a>
+    <a class="btn btn-primary" href="{% url 'proveedoresBorrar'%}" >Borrar</a>
+    <a class="btn btn-primary" href="{% url 'proveedoresList' %}" >Listar</a>
+    <a class="btn btn-primary" href="{% url 'proveedoresModif' %}" >Modificar</a>
+{% endblock %}
