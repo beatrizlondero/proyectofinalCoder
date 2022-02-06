@@ -1,5 +1,5 @@
 {% extends 'padre.html' %}
-{% block proveedorCambia %}
+{% block Cambia %}
     {% if form.errors %}
         <p style= "color:red; ">{{form.errors}}</p>
     {% endif %}
@@ -16,6 +16,6 @@
     <br>
     <br>
     <br>
-    <input class="btn btn-primary" type="submit" value="Volver" href="{% url 'proveedores'%}">
-    
+    {% comment %} <input class="btn btn-primary" type="submit" value="Volver" href="{% url 'proveedores'%}"> {% endcomment %}
+    <a class="btn btn-primary js-scroll-trigger" href="{% url 'proveedores' %} ">Volver</a>
 {% endblock %}

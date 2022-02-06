@@ -29,5 +29,7 @@ class Productos(Model):
     descripcion= CharField(max_length=50)
     cantidad= IntegerField()
     precio = FloatField()
+    imagen = ImageField (upload_to = 'avatares', null = True, blank=True)
+
     def __str__(self):
         return f"Nombre: {self.nombre} - Descripción: {self.descripcion} - Cantidad {self.cantidad} - Precio: {self.precio}"             

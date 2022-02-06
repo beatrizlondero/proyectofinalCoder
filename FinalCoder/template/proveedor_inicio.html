@@ -1,0 +1,23 @@
+{% extends 'padre.html' %}
+
+{% block Cambia %}
+
+<div class="subheading mb-5">
+    <h1 class="text">
+       *** PROVEEDORES ***
+    </div>
+        {% comment %} <p class="lead mb-5">Este es el proyecto final del curso de PYTHON cursado en CODERHOUSE. Esperamos cumplir con las consignas solicitadas y asi poder comenzar a trabajar en esto que tanto gusta.</p> {% endcomment %}
+        <div>
+            <a class="btn btn-primary" href="{% url 'proveedoresAdd' %}" >Agregar</a>
+            <a class="btn btn-primary" href="{% url 'proveedoresBorrar'%}" >Borrar</a>
+            <a class="btn btn-primary" href="{% url 'proveedoresList' %}" >Listar</a>
+            <a class="btn btn-primary" href="{% url 'proveedoresModif' %}" >Modificar</a>
+            
+        </div> 
+    </div> 
+</div>          
+
+    
+
+{% endblock %}
+

@@ -65,3 +65,6 @@ def editar_perfil (request):
 
 def mensaje(request):
     return render(request,'mensaje.html')
+
+def AcercaDe(request):
+    return render (request,'AcercaDe.html')

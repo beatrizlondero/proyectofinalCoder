@@ -1,5 +1,5 @@
 {% extends 'padre.html' %}
-{% block proveedorCambia %}
+{% block Cambia %}
     <h3> Los Proveedores son : </h3>
     {% for proveedor in object_list %}
         {{proveedor}}
@@ -8,6 +8,5 @@
     {% endfor %}    
     <br>
     <a class="btn btn-primary" href="{% url 'proveedores' %} ">Volver</a>
-    <a href="#proveedor"></a>
     {% comment %} <input class="btn btn-primary" type="submit" value="Volver" href="{% url 'proveedores'%}"> {% endcomment %}
 {% endblock %}

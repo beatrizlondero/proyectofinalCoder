@@ -1,5 +1,5 @@
 {% extends 'padre.html' %}
-{% block clienteCambia %}
+{% block Cambia %}
     {% if form.errors %}
         <p style= "color:red; ">{{form.errors}}</p>
     {% endif %}
@@ -16,12 +16,8 @@
     <br>
     <br>
     <br>
-    <input class="btn btn-primary" type="submit" value="Volver" href="{% url 'clientes'%}">
+    {% comment %} <input class="btn btn-primary" type="submit" value="Volver" href="{% url 'clientes'%}"> {% endcomment %}
+    <a class="btn btn-primary js-scroll-trigger" href="{% url 'clientes' %} ">Volver</a>
+
     
-{% endblock %}
-{% block proveedorCambia %}
-    <a class="btn btn-primary" href="{% url 'proveedoresAdd' %}" >Agregar</a>
-    <a class="btn btn-primary" href="{% url 'proveedoresBorrar'%}" >Borrar</a>
-    <a class="btn btn-primary" href="{% url 'proveedoresList' %}" >Listar</a>
-    <a class="btn btn-primary" href="{% url 'proveedoresModif' %}" >Modificar</a>
 {% endblock %}

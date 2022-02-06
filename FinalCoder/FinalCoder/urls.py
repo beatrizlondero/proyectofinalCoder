@@ -17,7 +17,7 @@ from django.conf import settings
 from django.contrib import admin
 from django.urls import path, include
 from AppFinalCoder.views import agregar_avatar
-from FinalCoder.views import editar_perfil
+from FinalCoder.views import editar_perfil, AcercaDe
 from FinalCoder.views import UserCreateView
 from FinalCoder.views import login_request, mensaje
 from django.contrib.auth.views import LogoutView
@@ -26,7 +26,7 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', login_request, name="inicio"),
+    path('', AcercaDe , name="inicio"),
     path('finalcoder', include("AppFinalCoder.urls")),
     path('login',login_request,name = 'login'),
     path('register', UserCreateView.as_view(), name='register'),

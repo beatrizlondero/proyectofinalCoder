@@ -1,5 +1,5 @@
 {% extends 'padre.html' %}
-{% block clienteCambia %}
+{% block Cambia %}
     {% if form.errors %}
     <p style= "color:red; ">{{form.errors}}</p>
 
@@ -22,10 +22,4 @@
     <br>
     <br>
     <a class="btn btn-primary" href="{% url 'clientes' %} ">Volver</a>
-{% endblock %}
-{% block proveedorCambia %}
-    <a class="btn btn-primary" href="{% url 'proveedoresAdd' %}" >Agregar</a>
-    <a class="btn btn-primary" href="{% url 'proveedoresBorrar'%}" >Borrar</a>
-    <a class="btn btn-primary" href="{% url 'proveedoresList' %}" >Listar</a>
-    <a class="btn btn-primary" href="{% url 'proveedoresModif' %}" >Modificar</a>
 {% endblock %}
