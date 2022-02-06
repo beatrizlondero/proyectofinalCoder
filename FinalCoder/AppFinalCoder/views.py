@@ -10,12 +10,21 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 from AppFinalCoder.models import Proveedor
 from AppFinalCoder.forms import *
-from AppFinalCoder.models import Cliente
+from AppFinalCoder.models import Cliente, Avatar
 
 @login_required
 def inicio (request):
-    return render(request,'inicio.html')
+    avatares = Avatar.objects.filter(user=request.user.id)
+    if avatares:
+        avatar_url= avatares.last().imagen.url
+    else:
+        avatar_url =''
+        
+    return render(request,'inicio.html',{'avatar_url':avatar_url})
     # return HttpResponse("Incio")
+    # avatares = Avatar.objects.filter(user=request.user.id)
+    # return render (request, 'inicio.html',{'url':avatares[0].imagen.url})
+    
 
 def proveedores(request):
     return render(request, 'inicio.html')
@@ -38,6 +47,18 @@ class proveedoresModif(LoginRequiredMixin,ListView):
 class clientesModif(LoginRequiredMixin,ListView):
     model = Cliente
     template_name='clienteedit.html'     
+
+@login_required    
+def agregar_avatar(request):
+    if request == 'POST':
+        formulario = AvatarFomrulario(request.POST, request.FILES)
+        if formulario.is_valid():
+            avatar = Avatar (user=request.user, imagen=formulario.cleaned_data['imagen'])
+            avatar.save
+            return redirect ('inicio')
+    else :
+        formulario = AvatarFomrulario()
+    return render (request, 'agregar_avatar.html', {'form':formulario})        
     
     
 class proveedorDeleteView(DeleteView):

@@ -13,16 +13,29 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.conf import settings
 from django.contrib import admin
 from django.urls import path, include
-from FinalCoder.views import login_request, register, mensaje
+from AppFinalCoder.views import agregar_avatar
+from FinalCoder.views import editar_perfil
+from FinalCoder.views import UserCreateView
+from FinalCoder.views import login_request, mensaje
 from django.contrib.auth.views import LogoutView
+from django.conf import settings
+from django.conf.urls.static import static
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', login_request, name="inicio"),
     path('finalcoder', include("AppFinalCoder.urls")),
-    path('login',login_request, name = 'login'),
-    path('register', register, name='register'),
+    path('login',login_request,name = 'login'),
+    path('register', UserCreateView.as_view(), name='register'),
     path('logout', LogoutView.as_view(template_name='logout.html'), name='logout'),
-    path('mensaje', mensaje, name='mensaje')
+    path('mensaje', mensaje, name='mensaje'),
+    path('editarperfil',editar_perfil, name='editarperfil'),
+    path('agregaravatar',agregar_avatar, name='agregaravatar'),
     
 ]
+
+# urlpatterns += static(settings.MEDIA_URL, doucment_root = settings.MEDIA_ROOT)
+urlpatterns += static(settings.MEDIA_URL, documnet_root=settings.MEDIA_ROOT)

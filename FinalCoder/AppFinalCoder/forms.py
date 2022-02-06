@@ -1,5 +1,5 @@
-from django.forms import Form
-from django.forms import CharField, EmailField, DateTimeField, IntegerField, FloatField
+from django.forms import Form, ImageField
+from django.forms import CharField, EmailField, DateField, IntegerField, FloatField
 
 class proveedorForm(Form):
     nombre=CharField()
@@ -9,7 +9,7 @@ class proveedorForm(Form):
 class clienteForm(Form):
     nombre = CharField()
     apellido = CharField()
-    nacimiento = DateTimeField()
+    nacimiento = DateField(input_formats=['%m %d %Y'])
     email = EmailField()
     
 class productosForm(Form):
@@ -17,3 +17,6 @@ class productosForm(Form):
     descripcion= CharField()
     cantidad= IntegerField()
     precio = FloatField()    
+    
+class AvatarFomrulario(Form):
+    imagen=ImageField(required=True)
