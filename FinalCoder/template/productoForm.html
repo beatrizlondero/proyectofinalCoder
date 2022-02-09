@@ -1,4 +1,4 @@
-<{% extends 'padre.html' %}
+{% extends 'padre.html' %}
 {% block Cambia %}
     {% if form.errors %}
     <p style= "color:red; ">{{form.errors}}</p>
@@ -8,11 +8,10 @@
         {% csrf_token %}
         {{ form.as_p}}
 
-
     <br>
     <input type="submit" value="Enviar">
     <br>
     <br>
     <br>
-    <a class="btn btn-primary" href="{% url 'inicio' %} ">Volver</a>
+    <a class="btn btn-primary" href="{% url 'productos' %} ">Volver</a>
 {% endblock %}

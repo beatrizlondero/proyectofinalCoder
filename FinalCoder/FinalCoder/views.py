@@ -58,7 +58,7 @@ def editar_perfil (request):
             # usuario.password1= data['password1']                    
             # usuario.password2= data['password2']
             usuario.save()
-            return redirect ('Inicio')
+            return redirect ('AcercaDe')
     else:
         form=UserEditForm({'email':usuario.email}) 
     return render (request, 'registro.html',{'form':form})

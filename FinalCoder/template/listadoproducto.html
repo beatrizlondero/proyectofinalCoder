@@ -1,0 +1,10 @@
+{% extends 'padre.html' %}
+{% block Cambia %}
+    <h3> Los Productos son : </h3>
+    {% for producto in object_list %}
+        {{producto}}
+        <br>
+    {% endfor %}    
+    <a class="btn btn-primary js-scroll-trigger" href="{% url 'productos' %} ">Volver</a>
+{% endblock %}
+

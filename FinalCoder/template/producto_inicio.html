@@ -1,0 +1,22 @@
+{% extends 'padre.html' %}
+
+{% block Cambia %}
+
+<div class="subheading mb-5">
+    <h1 class="text">
+       *** PRODUCTOS ***
+    </div>
+        <div>
+            <a class="btn btn-primary" href="{% url 'productosAdd' %}" >Agregar</a>
+            <a class="btn btn-primary" href="{% url 'productosBorrar'%}" >Borrar</a>
+            <a class="btn btn-primary" href="{% url 'productosList' %}" >Listar</a>
+            <a class="btn btn-primary" href="{% url 'productosModif' %}" >Modificar</a>
+            
+        </div> 
+    </div> 
+</div>          
+
+    
+
+{% endblock %}
+

@@ -1,0 +1,13 @@
+{% extends 'padre.html' %}
+{% block Cambia %}
+    
+    <h3> Los productos son : </h3>
+    {% for producto in object_list %}
+        {{producto}}
+        {% comment %} <a href= "{% url 'productosUpdate' producto.id %}"> Editar </a> {% endcomment %}
+        <a href = "{% url 'productosDel' producto.id %}"> Borraremos </a>
+        <br>
+    {% endfor %}    
+    <br>
+    <a class="btn btn-primary" href="{% url 'productos' %} ">Volver</a>
+{% endblock %}

@@ -9,8 +9,9 @@ from django.views.generic.detail import DetailView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 from AppFinalCoder.models import Proveedor
-from AppFinalCoder.forms import *
+from AppFinalCoder.forms import productosForm, AvatarFomrulario
 from AppFinalCoder.models import Cliente, Avatar
+from AppFinalCoder.models import Productos
 
 @login_required
 def inicio (request):
@@ -31,6 +32,9 @@ def proveedores(request):
 
 def clientes(request):
     return render(request, 'cliente_inicio.html')
+
+def productos(request):
+    return render (request, 'producto_inicio.html')
   
 class proveedorListView(ListView):
     model = Proveedor
@@ -40,13 +44,21 @@ class clienteListView(ListView):
     model = Cliente
     template_name='listadocliente.html'  
 
+class productoListView(ListView):
+    model = Productos
+    template_name='listadoproducto.html'      
+
 class proveedoresModif(LoginRequiredMixin,ListView):
     model = Proveedor
     template_name='proveedor_edit.html' 
      
 class clientesModif(LoginRequiredMixin,ListView):
     model = Cliente
-    template_name='clienteedit.html'     
+    template_name='clienteedit.html'   
+    
+class productosModif(LoginRequiredMixin,ListView):
+    model = Productos
+    template_name='producto_edit.html'  
 
 @login_required    
 def agregar_avatar(request):
@@ -55,7 +67,7 @@ def agregar_avatar(request):
         if formulario.is_valid():
             avatar = Avatar (user=request.user, imagen = formulario.cleaned_data['imagen'])
             avatar.save
-            return redirect ('inicio')
+            return redirect ('AcercaDe')
     else :
         formulario = AvatarFomrulario()
     return render (request, 'agregar_avatar.html', {'form':formulario})        
@@ -71,6 +83,11 @@ class clienteDeleteView(DeleteView):
     success_url = reverse_lazy('clientesList')
     template_name= 'clienteform_borrar.html' 
     
+class productoDeleteView(DeleteView):
+    model = Productos
+    success_url = reverse_lazy('productosList')
+    template_name= 'clienteform_borrar.html'     
+    
 class proveedoresBorrar(LoginRequiredMixin, ListView):
     model = Proveedor
     template_name='proveedorborrar.html' 
@@ -78,6 +95,10 @@ class proveedoresBorrar(LoginRequiredMixin, ListView):
 class clientesBorrar(LoginRequiredMixin, ListView):
     model = Cliente
     template_name='clienteborrar.html' 
+    
+class productosBorrar(LoginRequiredMixin, ListView):
+    model = Productos
+    template_name='producto_borrar.html'     
     
 class proveedorCreateView(LoginRequiredMixin, CreateView): 
     model = Proveedor
@@ -92,6 +113,26 @@ class clienteCreateView(LoginRequiredMixin, CreateView):
             ,'email']
     template_name= 'clienteform.html'       
 
+class productoCreateView(LoginRequiredMixin, CreateView): 
+    model = Productos
+    success_url = reverse_lazy('productosList')
+    fields=['nombre','descripcion','cantidad'
+            ,'precio', 'imagen']
+    template_name= 'productoform.html'     
+    
+# def producto_agregar(request):
+#     if request == 'POST':
+#         formulario = productosForm(request.POST, request.FILES)
+#         if formulario.is_valid():
+#             formulario = formulario.cleaned_data()
+#             producto = Productos(nombre ='nombre', descripcion='descripcion', cantidad ='cantidad'
+#             , precio = 'precio', imagen = 'imagen')
+#             producto.save
+#             return redirect ('Productos')
+#     else :
+#         formulario = productosForm()
+#     return render (request, 'productoForm.html', {'form':formulario})          
+
 class proveedorUpdateView(UpdateView):    
     model = Proveedor
     success_url = reverse_lazy('proveedoresList')
@@ -103,3 +144,17 @@ class clienteUpdateView(UpdateView):
     success_url = reverse_lazy('clientesList')
     fields=['nombre','apellido','nacimiento','email' ]
     template_name= 'clienteform.html'  
+    
+class productoUpdateView(UpdateView):    
+    model = Productos
+    success_url = reverse_lazy('productosList')
+    fields=['nombre','descripcion','cantidad','precio']
+    # im = Productos.objects.get('imagen')
+    # get('imagen')
+    # if im :
+    #     im_url= im(imagen.url)
+    #     # get().imagen.url
+        
+    # else:
+    #     im_url =''    
+    template_name= 'productoForm.html'      
