@@ -34,11 +34,18 @@
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#Ofertas">Ofertas</a></li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#Recomendados">Recomendados</a></li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{% url 'logout' %}">LOGOUT</a></li>
+                    <li class="subheading mb-5" >Usuario: {{user.username}}</li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{% url 'editarperfil' %}">Editar Usuario</a></li>
+                    {% if "{{avatar_url}}" == '' %}
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{% url 'agregaravatar' %}">Agregar imagen</a></li>
+                    {% else %}
+                        <img  src="{{avatar_url}}">
+                    {% endif %}
                 </ul>
+                
             </div>
             <a>
                 {% comment %} <span class="d-none d-lg-block"><img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="{{avatar_url}}" alt="" /></span> {% endcomment %}
-                <img  src="{{avatar_url}}"
                 {% comment %} {% if model.image %}
                     <image src="{{model.image.url}}">
                 {% endif %} {% endcomment %}

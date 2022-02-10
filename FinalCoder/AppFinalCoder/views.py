@@ -86,7 +86,7 @@ class clienteDeleteView(DeleteView):
 class productoDeleteView(DeleteView):
     model = Productos
     success_url = reverse_lazy('productosList')
-    template_name= 'clienteform_borrar.html'     
+    template_name= 'productoform_borrar.html'     
     
 class proveedoresBorrar(LoginRequiredMixin, ListView):
     model = Proveedor

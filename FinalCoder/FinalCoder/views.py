@@ -7,6 +7,7 @@ from FinalCoder.forms import UserRegisterForm, UserEditForm
 from django.views.generic import CreateView
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
+from AppFinalCoder.models import Avatar
 
 def login_request(request):
     if request.method == 'POST':
@@ -17,7 +18,7 @@ def login_request(request):
             user = authenticate(username=usuario, password=contrasena)
             if user is not None:
                 login (request,user)
-                return redirect('Inicio')
+                return redirect('AcercaDe')
             else:
                 return render (request, 'login.html',
                     {'form' : form, 'error':'Usuario y Contraseña NO VALIDOS' })        
@@ -66,5 +67,12 @@ def editar_perfil (request):
 def mensaje(request):
     return render(request,'mensaje.html')
 
+@login_required
 def AcercaDe(request):
-    return render (request,'AcercaDe.html')
+    avatares = Avatar.objects.filter(user=request.user.id)
+    if avatares:
+        avatar_url= avatares.last().imagen.url
+    else:
+        avatar_url =''
+        
+    return render(request,'AcercaDe.html',{'avatar_url':avatar_url})
