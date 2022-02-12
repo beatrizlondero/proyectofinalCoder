@@ -1,3 +1,4 @@
+from datetime import datetime
 from re import template
 from django.shortcuts import redirect
 from django.shortcuts import render
@@ -9,9 +10,10 @@ from django.views.generic.detail import DetailView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 from AppFinalCoder.models import Proveedor
-from AppFinalCoder.forms import productosForm, AvatarFomrulario
+from AppFinalCoder.forms import productosForm, AvatarFormulario, ComentarioFormulario 
 from AppFinalCoder.models import Cliente, Avatar
 from AppFinalCoder.models import Productos
+from AppFinalCoder.models import Comentarios
 
 @login_required
 def inicio (request):
@@ -35,6 +37,9 @@ def clientes(request):
 
 def productos(request):
     return render (request, 'producto_inicio.html')
+
+def comentarios(request):
+    return render (request, 'comentario_inicio.html')
   
 class proveedorListView(ListView):
     model = Proveedor
@@ -60,16 +65,27 @@ class productosModif(LoginRequiredMixin,ListView):
     model = Productos
     template_name='producto_edit.html'  
 
+def agregar_comentario(request):
+    if request == 'POST':
+        formulario = ComentarioFormulario(request.POST)
+        if formulario.is_valid():
+            comentario = Comentarios (user_id=request.user, comentario = formulario.cleaned_data['comentario'], fecha= datetime.now)
+            comentario.save
+            return redirect ('inicio')
+    else :
+        formulario = ComentarioFormulario()
+    return render (request, 'comentario_agregar.html', {'form':formulario})  
+
 @login_required    
 def agregar_avatar(request):
     if request == 'POST':
-        formulario = AvatarFomrulario(request.POST, request.FILES)
+        formulario = AvatarFormulario(request.POST, request.FILES)
         if formulario.is_valid():
             avatar = Avatar (user=request.user, imagen = formulario.cleaned_data['imagen'])
             avatar.save
-            return redirect ('AcercaDe')
+            return redirect ('inicio')
     else :
-        formulario = AvatarFomrulario()
+        formulario = AvatarFormulario()
     return render (request, 'agregar_avatar.html', {'form':formulario})        
     
     
@@ -112,6 +128,13 @@ class clienteCreateView(LoginRequiredMixin, CreateView):
     fields=['nombre','apellido','nacimiento'
             ,'email']
     template_name= 'clienteform.html'       
+    
+# class comentarioCreateView(LoginRequiredMixin, CreateView): 
+#     model = Comentarios
+#     success_url = reverse_lazy('')
+#     fields=['comentario','apellido','nacimiento'
+#             ,'email']
+#     template_name= 'clienteform.html'           
 
 class productoCreateView(LoginRequiredMixin, CreateView): 
     model = Productos

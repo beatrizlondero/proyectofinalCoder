@@ -1,0 +1,25 @@
+{% extends 'padre.html' %}
+{% block Cambia %}
+    {% if form.errors %}
+    <p style= "color:red; ">{{form.errors}}</p>
+
+    {% endif %}
+
+    <form action="" method='POST'> 
+    {% csrf_token %}
+    <table>
+        
+        {{ form.as_table }}
+
+    </table>
+    <br>
+    <input type="submit" value="Enviar">
+    <br>
+    <br>
+    <br>
+    {% comment %} <input class="btn btn-primary" type="submit" value="Volver" href="{% url 'comentarios'%}"> {% endcomment %}
+    <!-- <a >Formato de la fecha mm/dd/aaaa</a> -->
+    <br>
+    <br>
+    <a class="btn btn-primary" href="{% url 'clientes' %} ">Volver</a>
+{% endblock %}

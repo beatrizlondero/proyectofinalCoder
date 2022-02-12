@@ -1,7 +1,6 @@
 from xml.etree.ElementInclude import include
 from django.urls import path
-from AppFinalCoder.views import inicio, proveedores, clientes, productos 
-# , producto_agregar
+from AppFinalCoder.views import comentarios, proveedores, clientes, productos 
 from django.urls import path
 from AppFinalCoder.views import proveedorListView, proveedorCreateView , proveedorUpdateView, proveedoresModif
 from AppFinalCoder.views import proveedorDeleteView, proveedoresBorrar
@@ -9,6 +8,7 @@ from AppFinalCoder.views import clienteListView, clienteCreateView, clienteUpdat
 from AppFinalCoder.views import clienteDeleteView, clientesBorrar, clientesModif, productoCreateView
 from AppFinalCoder.views import productoListView
 from AppFinalCoder.views import productosBorrar, productoDeleteView, productosModif, productoUpdateView
+from AppFinalCoder.views import agregar_comentario
 urlpatterns = [
     # path('', inicio, name="Inicio"),
     path('proveedores/list', proveedorListView.as_view(), name="proveedoresList"),
@@ -32,4 +32,9 @@ urlpatterns = [
     path('productos/modif>',productosModif.as_view() , name="productosModif"),
     path('productos/modificar/<pk>', productoUpdateView.as_view(), name="productosUpdate"),
     path('productos/del/<pk>', productoDeleteView.as_view(), name="productosDel"),
+    
+    path('comentarios/', comentarios , name="comentarios"),
+    path('comentarios/add', agregar_comentario , name="comentariosAdd"),
+    # path('comentarios/del', productosBorrar.as_view() , name="comentariosDel"),
+    # path('comentarios/find', productosBorrar.as_view() , name="comentariosFind"),
 ]

@@ -1,6 +1,6 @@
 from django.forms import Form, ImageField
-from django.forms import CharField, EmailField, DateField, IntegerField, FloatField
-
+from django.forms import CharField, EmailField, DateField,IntegerField, FloatField
+from django.forms import Textarea
 class proveedorForm(Form):
     nombre=CharField()
     domicilio= CharField()
@@ -16,7 +16,12 @@ class productosForm(Form):
     nombre=CharField()
     descripcion= CharField()
     cantidad= IntegerField()
-    precio = FloatField()    
+    precio = FloatField()   
+    imagen=ImageField(required=False) 
     
-class AvatarFomrulario(Form):
+class AvatarFormulario(Form):
     imagen=ImageField(required=True)
+    
+class ComentarioFormulario(Form):
+    comentario = Textarea()
+    fecha = DateField()

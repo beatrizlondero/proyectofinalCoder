@@ -18,7 +18,7 @@ def login_request(request):
             user = authenticate(username=usuario, password=contrasena)
             if user is not None:
                 login (request,user)
-                return redirect('AcercaDe')
+                return redirect('inicio')
             else:
                 return render (request, 'login.html',
                     {'form' : form, 'error':'Usuario y Contraseña NO VALIDOS' })        
@@ -55,11 +55,13 @@ def editar_perfil (request):
         if form.is_valid():
             data = form.cleaned_data
             usuario.email = data['email']
+            # usuario.set_password(data['password'])
+            # usuario.set_password(data['password'])
+            
             usuario.set_password(data['password'])
-            # usuario.password1= data['password1']                    
             # usuario.password2= data['password2']
             usuario.save()
-            return redirect ('AcercaDe')
+            return redirect ('inicio')
     else:
         form=UserEditForm({'email':usuario.email}) 
     return render (request, 'registro.html',{'form':form})

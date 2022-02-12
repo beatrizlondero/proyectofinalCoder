@@ -1,12 +1,17 @@
 from distutils.command.upload import upload
 from django.db import models
 from django.db.models import Model , ForeignKey, CASCADE , ImageField
-from django.db.models.fields import CharField, EmailField, DateField, IntegerField, FloatField
+from django.db.models.fields import TextField, CharField, EmailField, DateField, IntegerField, FloatField
 from django.contrib.auth.models import User
 
 class Avatar(Model):
     user= ForeignKey (User, on_delete=CASCADE)
     imagen = ImageField (upload_to = 'avatares', null = True, blank=True)
+
+class Comentarios(Model):
+    user= ForeignKey (User, on_delete=CASCADE)
+    comentario = TextField()
+    fecha = DateField()
     
 class Cliente (Model):
     nombre = CharField(max_length=30)

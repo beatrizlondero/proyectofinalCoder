@@ -1,0 +1,22 @@
+{% extends 'padre.html' %}
+
+{% block Cambia %}
+
+<div class="subheading mb-5">
+    <h1 class="text">
+       * Comentarios y Sugerencias *
+    </div>
+        <div>
+            <a class="btn btn-primary" href="{% url 'comentariosAdd' %}" >Agregar</a>
+            <a class="btn btn-primary" href="{% url 'clientesBorrar'%}" >Borrar</a>
+            <a class="btn btn-primary" href="{% url 'clientesList' %}" >Buscar</a>
+            <!-- <a class="btn btn-primary" href="{% url 'clientesModif' %}" >Modificar</a> -->
+            
+        </div> 
+    </div> 
+</div>          
+
+    
+
+{% endblock %}
+
