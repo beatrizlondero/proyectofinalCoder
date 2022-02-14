@@ -1,6 +1,7 @@
+from django import forms
 from django.forms import Form, ImageField
 from django.forms import CharField, EmailField, DateField,IntegerField, FloatField
-from django.forms import Textarea
+from django import forms
 class proveedorForm(Form):
     nombre=CharField()
     domicilio= CharField()
@@ -23,5 +24,5 @@ class AvatarFormulario(Form):
     imagen=ImageField(required=True)
     
 class ComentarioFormulario(Form):
-    comentario = Textarea()
-    fecha = DateField()
+    comentario = CharField(widget= forms.Textarea)
+    # fecha = DateField()

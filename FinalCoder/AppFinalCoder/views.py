@@ -1,5 +1,6 @@
-from datetime import datetime
-from re import template
+# from datetime import datetime
+# from re import template
+from datetime import date
 from django.shortcuts import redirect
 from django.shortcuts import render
 from django.http import HttpResponse
@@ -69,7 +70,8 @@ def agregar_comentario(request):
     if request == 'POST':
         formulario = ComentarioFormulario(request.POST)
         if formulario.is_valid():
-            comentario = Comentarios (user_id=request.user, comentario = formulario.cleaned_data['comentario'], fecha= datetime.now)
+            formulario = formulario.cleaned_data()
+            comentario = Comentarios (user=request.user, comentario = ['comentario'], fecha = date.today)
             comentario.save
             return redirect ('inicio')
     else :

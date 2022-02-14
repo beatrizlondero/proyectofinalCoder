@@ -1,8 +1,11 @@
 from distutils.command.upload import upload
+from tkinter import Widget
+from tkinter.tix import Form
 from django.db import models
 from django.db.models import Model , ForeignKey, CASCADE , ImageField
 from django.db.models.fields import TextField, CharField, EmailField, DateField, IntegerField, FloatField
 from django.contrib.auth.models import User
+from django import forms
 
 class Avatar(Model):
     user= ForeignKey (User, on_delete=CASCADE)

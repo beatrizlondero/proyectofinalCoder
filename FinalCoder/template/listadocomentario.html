@@ -1,0 +1,18 @@
+{% extends 'padre.html' %}
+{% block Cambia %}
+    <h3> Los comentarios de la fecha {{ fecha }} son : </h3>
+    <!-- {% for producto in object_list %}
+        {{producto}}
+        <a href = "{% url 'productosUpdate' producto.id %}"> Editar </a>
+        <br>
+    {% endfor %}   -->
+
+
+    {% for comentario in object_list %}
+        {{comentario}}
+        <!-- <a href = "{% url 'productosUpdate' producto.id %}"> Editar </a> -->
+        <br>
+    {% endfor %}    
+    <a class="btn btn-primary js-scroll-trigger" href="{% url 'comentarios' %} ">Volver</a>
+{% endblock %}
+
