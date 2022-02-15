@@ -29,17 +29,17 @@ def login_request(request):
         form = AuthenticationForm
         return render(request, 'login.html', {'form' : form })
     
-def register (request):
-    if request.method =='POST':
-        form = UserRegisterForm(request.POST)
-        if form.is_valid():
-            username = form.cleaned_data['username']
-            form.save()
-            return HttpResponse (f'Usuario {username} fue creado correctamente')
-    else:
-        form = UserRegisterForm()
+# def register (request):
+#     if request.method =='POST':
+#         form = UserRegisterForm(request.POST)
+#         if form.is_valid():
+#             username = form.cleaned_data['username']
+#             form.save()
+#             return HttpResponse (f'Usuario {username} fue creado correctamente')
+#     else:
+#         form = UserRegisterForm()
     
-    return render (request, 'registro.html', {'form':form})
+#     return render (request, 'registro.html', {'form':form})
 
 class UserCreateView(CreateView):
     model=User
@@ -55,15 +55,12 @@ def editar_perfil (request):
         if form.is_valid():
             data = form.cleaned_data
             usuario.email = data['email']
-            # usuario.set_password(data['password'])
-            # usuario.set_password(data['password'])
-            
-            usuario.set_password(data['password'])
-            # usuario.password2= data['password2']
+            usuario.set_password(data['password1'])
             usuario.save()
-            return redirect ('inicio')
+            return redirect ('login')
     else:
         form=UserEditForm({'email':usuario.email}) 
+    # return redirect ('inicio')    
     return render (request, 'registro.html',{'form':form})
 
 def mensaje(request):

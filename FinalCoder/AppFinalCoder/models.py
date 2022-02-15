@@ -13,7 +13,7 @@ class Avatar(Model):
 
 class Comentarios(Model):
     user= ForeignKey (User, on_delete=CASCADE)
-    comentario = TextField()
+    comentario = CharField(max_length=500)
     fecha = DateField()
     
 class Cliente (Model):

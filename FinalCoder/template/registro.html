@@ -1,19 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+{% extends 'abuelo.html' %}
 <body>
-    <form action="" method="POST">
+    {% block Cambia %}
+        <form action="" method="POST">
         {% csrf_token %}
         <table>
             {{form.as_table}}
         </table>
+        <br>
+        <br>
         <input type="submit" value="Guardar Usuario">
 
-    </form>
+        </form>
+    {% endblock %}    
 </body>
 </html>

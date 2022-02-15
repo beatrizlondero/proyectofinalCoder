@@ -16,7 +16,7 @@ from AppFinalCoder.models import Cliente, Avatar
 from AppFinalCoder.models import Productos
 from AppFinalCoder.models import Comentarios
 
-@login_required
+# @login_required
 def inicio (request):
     avatares = Avatar.objects.filter(user=request.user.id)
     if avatares:
@@ -66,14 +66,17 @@ class productosModif(LoginRequiredMixin,ListView):
     model = Productos
     template_name='producto_edit.html'  
 
+@login_required
 def agregar_comentario(request):
     if request == 'POST':
         formulario = ComentarioFormulario(request.POST)
         if formulario.is_valid():
-            formulario = formulario.cleaned_data()
-            comentario = Comentarios (user=request.user, comentario = ['comentario'], fecha = date.today)
+            # formulario = formulario.cleaned_data()
+            comentario = Comentarios (user=request.user,
+                                      comentario = formulario.cleaned_data['comentario'],
+                                      fecha = date.today)
             comentario.save
-            return redirect ('inicio')
+            return redirect ('comentarios')
     else :
         formulario = ComentarioFormulario()
     return render (request, 'comentario_agregar.html', {'form':formulario})  
