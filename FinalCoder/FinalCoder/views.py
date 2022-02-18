@@ -72,6 +72,6 @@ def AcercaDe(request):
     if avatares:
         avatar_url= avatares.last().imagen.url
     else:
-        avatar_url =''
+        avatar_url ='ninguna'
         
     return render(request,'AcercaDe.html',{'avatar_url':avatar_url})

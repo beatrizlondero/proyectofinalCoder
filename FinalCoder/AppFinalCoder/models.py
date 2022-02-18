@@ -1,20 +1,24 @@
 from distutils.command.upload import upload
 from tkinter import Widget
 from tkinter.tix import Form
+from xmlrpc.client import DateTime
 from django.db import models
 from django.db.models import Model , ForeignKey, CASCADE , ImageField
 from django.db.models.fields import TextField, CharField, EmailField, DateField, IntegerField, FloatField
 from django.contrib.auth.models import User
 from django import forms
+from datetime import date
 
 class Avatar(Model):
     user= ForeignKey (User, on_delete=CASCADE)
     imagen = ImageField (upload_to = 'avatares', null = True, blank=True)
+    def __str__(self):
+        return f'Usuario: {self.user} imagen: {self.imagen}'
 
 class Comentarios(Model):
     user= ForeignKey (User, on_delete=CASCADE)
     comentario = CharField(max_length=500)
-    fecha = DateField()
+    fecha = DateField(default=date.today)
     
 class Cliente (Model):
     nombre = CharField(max_length=30)
