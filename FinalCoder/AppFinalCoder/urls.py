@@ -10,7 +10,7 @@ from AppFinalCoder.views import productoListView
 from AppFinalCoder.views import productosBorrar, productoDeleteView, productosModif, productoUpdateView
 from AppFinalCoder.views import agregar_comentario, comentariosBorrar
 from AppFinalCoder.views import comentariosBorrar
-from AppFinalCoder.views import comentarioDeleteView
+from AppFinalCoder.views import comentarioDeleteView, comentariosModif, comentarioUpdateView
 urlpatterns = [
     # path('', inicio, name="Inicio"),
     path('proveedores/list', proveedorListView.as_view(), name="proveedoresList"),
@@ -39,6 +39,7 @@ urlpatterns = [
     path('comentarios/add', agregar_comentario , name="comentariosAdd"),
     path('comentarios/borrar', comentariosBorrar.as_view(), name="comentariosBorrar"),
     path('comentarios/del/<pk>', comentarioDeleteView.as_view() , name="comentariosDel"),
-    # path('comentarios/del', productosBorrar.as_view() , name="comentariosDel"),
-    # path('comentarios/find', productosBorrar.as_view() , name="comentariosFind"),
+    path('comentarios/modif>',comentariosModif.as_view() , name="comentariosModif"),
+    path('comentarios/modificar/<pk>', comentarioUpdateView.as_view(), name="comentariosUpdate"),
+ 
 ]

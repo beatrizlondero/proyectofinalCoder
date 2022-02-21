@@ -3,7 +3,6 @@
     <h3> Los productos son : </h3>
     {% for producto in object_list %}
         {{producto}}
-        {% comment %} <a href= "{% url 'productosUpdate' producto.id %}"> Editar </a> {% endcomment %}
         <a href = "{% url 'productosUpdate' producto.id %}"> Editar </a>
         <br>
     {% endfor %}    

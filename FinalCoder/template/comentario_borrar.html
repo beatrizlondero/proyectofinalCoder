@@ -4,42 +4,12 @@
     <p style= "color:red; ">{{form.errors}}</p>
 
     {% endif %}
-<!-- 
-    <h3> Los Clientes son : </h3>
-    {% for cliente in object_list %}
-        {{cliente}}
-        <br>
-    {% endfor %}     -->
     {% for comentario in object_list %}
             {{comentario.comentario}}
             <a href= "{% url 'comentariosDel' comentario.id %}"> Borrar </a>
         <br>
     {% endfor %}    
-<!-- <form action="" method='POST'> 
-    {% csrf_token %}
-        ¿Desea borrar la siguiente informacion?: 
-    <br>
-    <br>
-        {{ object }}    
-    <br>
-    <br>
-    <br>
-        <input class="btn btn-primary" type="submit" value="Confirmar Borrado"> -->
 
-    <!-- <form action="" method='POST'> 
-    {% csrf_token %}
-    <table>
-        
-        {{ form.as_table }}
-
-    </table>
-    <br>
-    <input type="submit" value="Enviar">
-    <br>
-    <br>
-    <br> -->
-    <!-- {% comment %} <input class="btn btn-primary" type="submit" value="Volver" href="{% url 'comentarios' %}"> {% endcomment %} -->
-    <!-- <a >Formato de la fecha mm/dd/aaaa</a> -->
     <br>
     <br>
     <a class="btn btn-primary" href="{% url 'comentarios' %} ">Volver</a>

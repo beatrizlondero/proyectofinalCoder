@@ -17,32 +17,45 @@ from AppFinalCoder.models import Cliente, Avatar
 from AppFinalCoder.models import Productos
 from AppFinalCoder.models import Comentarios
 
-# @login_required
-def inicio (request):
+def llamar_avatar(request):
     avatares = Avatar.objects.filter(user=request.user.id)
     if avatares:
         avatar_url= avatares.last().imagen.url
     else:
         avatar_url = "ninguna"
+    return avatar_url
+
+# @login_required
+def inicio (request):
+    # avatares = Avatar.objects.filter(user=request.user.id)
+    # if avatares:
+    #     avatar_url= avatares.last().imagen.url
+    # else:
+    #     avatar_url = "ninguna"
+    avatar_url = llamar_avatar(request)
         
     return render(request,'AcercaDe.html',{'avatar_url':avatar_url})
     
 
 def proveedores(request):
-    return render(request, 'proveedor_inicio.html')
+    avatar_url = llamar_avatar(request)
+    return render(request, 'proveedor_inicio.html',{'avatar_url':avatar_url})
 
 def clientes(request):
-    return render(request, 'cliente_inicio.html')
+    avatar_url = llamar_avatar(request)
+    return render(request, 'cliente_inicio.html',{'avatar_url':avatar_url})
 
 def productos(request):
-    return render (request, 'producto_inicio.html')
+    avatar_url = llamar_avatar(request)
+    return render (request, 'producto_inicio.html',{'avatar_url':avatar_url})
 
 def comentarios(request):
-    return render (request, 'comentario_inicio.html')
+    avatar_url = llamar_avatar(request)
+    return render (request, 'comentario_inicio.html',{'avatar_url':avatar_url})
   
 class proveedorListView(ListView):
     model = Proveedor
-    template_name='listado.html'  
+    template_name=('listado.html')  
     
 class clienteListView(ListView):
     model = Cliente
@@ -63,6 +76,10 @@ class clientesModif(LoginRequiredMixin,ListView):
 class productosModif(LoginRequiredMixin,ListView):
     model = Productos
     template_name='producto_edit.html'  
+    
+class comentariosModif(LoginRequiredMixin,ListView):
+    model = Comentarios
+    template_name='comentario_editar.html'      
 
 @login_required
 def agregar_comentario(request):
@@ -76,7 +93,8 @@ def agregar_comentario(request):
             return redirect ('comentarios')
     else :
         formulario = ComentarioFormulario()
-    return render (request, 'comentario_agregar.html', {'form':formulario})  
+    avatar_url = llamar_avatar(request)    
+    return render (request, 'comentario_agregar.html', {'form':formulario,'avatar_url':avatar_url})  
 
 
 class comentarioCreateView(LoginRequiredMixin, CreateView): 
@@ -97,7 +115,8 @@ def agregar_avatar(request):
             return redirect ('inicio')
     else :
         formulario = AvatarFormulario()
-    return render (request, 'agregar_avatar.html', {'form':formulario})        
+    avatar_url = llamar_avatar(request)    
+    return render (request, 'agregar_avatar.html', {'form':formulario,'avatar_url':avatar_url})        
     
     
 class proveedorDeleteView(LoginRequiredMixin,DeleteView):
@@ -129,23 +148,7 @@ class comentariosBorrar(LoginRequiredMixin, ListView):
     model = Comentarios
     template_name='comentario_borrar.html'     
 
-# @login_required
-# def comentario_borrar (request):
-#     comentario = request.user
-#     if request.method == 'POST':
-#         form = ComentarioFormulario(request.POST)
-#         if form.is_valid():
-#             data = form.cleaned_data
-#             comentario = data['comentario']
-#             usuario.set_password(data['password1'])
-#             usuario.save()
-#             return redirect ('login')
-#     else:
-#         form=UserEditForm({'email':usuario.email}) 
-#     # return redirect ('inicio')    
-#     return render (request, 'registro.html',{'form':form})    
-    
-    
+   
 class clientesBorrar(LoginRequiredMixin, ListView):
     model = Cliente
     template_name='clienteborrar.html' 
@@ -192,4 +195,18 @@ class productoUpdateView(LoginRequiredMixin,UpdateView):
     model = Productos
     success_url = reverse_lazy('productosList')
     fields=['nombre','descripcion','cantidad','precio']
-    template_name= 'productoForm.html'      
+    template_name= 'productoForm.html'  
+    
+class comentarioUpdateView(LoginRequiredMixin,UpdateView):    
+    model = Comentarios
+    success_url = reverse_lazy('comentarios')
+    fields=['comentario']
+    template_name= 'comentario_agregar.html'          
+    
+# class comentarioCreateView(LoginRequiredMixin, CreateView): 
+#     model = Comentarios
+#     success_url = reverse_lazy('comentarios')
+#     fecha = date.today
+    
+#     fields=['user','comentario']
+#     template_name= 'comentario_agregar.html'      

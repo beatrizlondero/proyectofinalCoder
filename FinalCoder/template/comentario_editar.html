@@ -5,18 +5,12 @@
 
     {% endif %}
 
-    <form action="" method='POST'> 
-    {% csrf_token %}
-    <table>
-        
-        {{ form.as_table }}
+    {% for comentario in object_list %}
+            {{comentario.comentario}}
+            <a href= "{% url 'comentariosUpdate' comentario.id %}"> Editar </a>
+        <br>
+    {% endfor %}    
 
-    </table>
-    <br>
-    <input type="submit" value="Enviar">
-    <br>
-    <br>
-    <br>
     <br>
     <br>
     <a class="btn btn-primary" href="{% url 'comentarios' %} ">Volver</a>

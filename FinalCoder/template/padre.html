@@ -31,13 +31,11 @@
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{% url 'clientes' %}">Clientes</a></li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{% url 'productos' %}">Productos</a></li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{% url 'comentarios' %}">Comentarios</a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#Recomendados">Recomendados</a></li>
+                    <!-- <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#Recomendados">Recomendados</a></li> -->
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{% url 'logout' %}">LOGOUT</a></li>
                     <li class="subheading mb-5" >Usuario: {{user.username}}</li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{% url 'editarperfil' %}">Editar Usuario</a></li>
-                    <li><a>"{{avatar_url}}"</a></li>
-                    {% if "{{avatar_url}}" == "ninguna" %}
-                        <!-- <a>entro</a> -->
+                    {% if avatar_url == "ninguna" %}
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{% url 'agregaravatar' %}">Agregar imagen</a></li>
                     {% else %}    
                         <img class="img-fluid img-profile rounded-circle mx-auto mb-2" src={{avatar_url}} width="80" height="80">

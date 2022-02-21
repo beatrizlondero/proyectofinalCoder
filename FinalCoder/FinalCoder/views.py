@@ -29,18 +29,6 @@ def login_request(request):
         form = AuthenticationForm
         return render(request, 'login.html', {'form' : form })
     
-# def register (request):
-#     if request.method =='POST':
-#         form = UserRegisterForm(request.POST)
-#         if form.is_valid():
-#             username = form.cleaned_data['username']
-#             form.save()
-#             return HttpResponse (f'Usuario {username} fue creado correctamente')
-#     else:
-#         form = UserRegisterForm()
-    
-#     return render (request, 'registro.html', {'form':form})
-
 class UserCreateView(CreateView):
     model=User
     success_url= reverse_lazy('login')
@@ -60,7 +48,6 @@ def editar_perfil (request):
             return redirect ('login')
     else:
         form=UserEditForm({'email':usuario.email}) 
-    # return redirect ('inicio')    
     return render (request, 'registro.html',{'form':form})
 
 def mensaje(request):
