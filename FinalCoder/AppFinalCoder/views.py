@@ -175,7 +175,7 @@ class productoCreateView(LoginRequiredMixin, CreateView):
     model = Productos
     success_url = reverse_lazy('productosList')
     fields=['nombre','descripcion','cantidad'
-            ,'precio', 'imagen']
+            ,'precio']
     template_name= 'productoform.html'     
   
 

@@ -10,14 +10,14 @@ class proveedorForm(Form):
 class clienteForm(Form):
     nombre = CharField()
     apellido = CharField()
-    nacimiento = DateField(input_formats=['%m %d %Y'])
+    nacimiento = DateField(input_formats=['%d %m %Y'])
     email = EmailField()
     
 class productosForm(Form):
     nombre=CharField()
     descripcion= CharField()
-    cantidad= IntegerField()
-    precio = FloatField()   
+    cantidad= IntegerField(min_value = '0')
+    precio = FloatField(min_value= 0)   
     imagen=ImageField(required=False) 
     
 class AvatarFormulario(Form):
